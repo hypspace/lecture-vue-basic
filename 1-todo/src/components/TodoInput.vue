@@ -20,8 +20,7 @@ export default {
   },
   methods: {
     addTodo() {
-      console.log('[TodoInput]', 'addTodo()', this.newTodo)
-      this.$emit('addTodo', this.newTodo)
+      this.$store.commit('addTodoItem', this.newTodo)
       this.clearInput()
     },
     clearInput() {
