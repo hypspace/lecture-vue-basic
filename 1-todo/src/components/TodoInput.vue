@@ -11,6 +11,8 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
+
 export default {
   name: 'TodoInput',
   data() {
@@ -19,9 +21,14 @@ export default {
     }
   },
   methods: {
+    ...mapMutations({
+      addTodoItem: 'addTodoItem',
+    }),
     addTodo() {
-      this.$store.commit('addTodoItem', this.newTodo)
-      this.clearInput()
+      if (this.newTodo.trim()) {
+        this.addTodoItem(this.newTodo)
+        this.clearInput()
+      }
     },
     clearInput() {
       this.newTodo = ''
