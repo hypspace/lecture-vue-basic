@@ -1,9 +1,9 @@
 <template>
   <div id="app">
     <TodoHeader></TodoHeader>
-    <TodoInput></TodoInput>
-    <TodoList></TodoList>
-    <TodoFooter></TodoFooter>
+    <TodoInput v-on:addTodo="addTodoItem"></TodoInput>
+    <TodoList v-bind:todos="todos" v-on:deleteTodo="deleteTodoItem"></TodoList>
+    <TodoFooter v-on:clearTodo="clearTodoItem"></TodoFooter>
   </div>
 </template>
 
@@ -20,6 +20,33 @@ export default {
     TodoInput: TodoInput,
     TodoList: TodoList,
     TodoFooter: TodoFooter,
+  },
+  data: function () {
+    return {
+      todos: [],
+    }
+  },
+  created: function () {
+    this.todos = Array.from({ length: localStorage.length }, (_, i) =>
+      localStorage.key(i)
+    )
+  },
+  methods: {
+    addTodoItem: function (newTodo) {
+      console.log('[root]', 'addTodoItem()', newTodo)
+      localStorage.setItem(newTodo, newTodo)
+      this.todos.push(newTodo)
+    },
+    deleteTodoItem: function (todo, idx) {
+      console.log('[root]', 'deleteTodoItem()', todo, idx)
+      localStorage.removeItem(todo)
+      this.todos.splice(idx, 1) // Array.from(event.target.closest('li').parentNode.children ).indexOf(event.target.closest('li'))
+    },
+    clearTodoItem: function () {
+      console.log('[root]', 'clearTodoItem()')
+      localStorage.clear()
+      this.todos = []
+    },
   },
 }
 </script>

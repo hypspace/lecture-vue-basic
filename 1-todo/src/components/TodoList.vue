@@ -10,22 +10,11 @@
 <script>
 export default {
   name: 'TodoList',
-  data: function () {
-    return {
-      todos: [],
-    }
-  },
-  created: function () {
-    this.todos = Array.from({ length: localStorage.length }, (_, i) =>
-      localStorage.key(i)
-    )
-  },
+  props: ['todos'],
   methods: {
     deleteTodo: function (todo, idx) {
       console.log('[TodoList]', 'deleteTodo()', todo, idx)
-
-      localStorage.removeItem(todo)
-      this.todos.splice(idx, 1) // Array.from(event.target.closest('li').parentNode.children ).indexOf(event.target.closest('li'))
+      this.$emit('deleteTodo', todo, idx)
     },
   },
 }
