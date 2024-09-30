@@ -10,7 +10,6 @@
 <script>
 export default {
   name: 'TodoList',
-  props: ['todos'],
   methods: {
     deleteTodo(todo, idx) {
       this.$store.commit('deleteTodoItem', { todo, idx })

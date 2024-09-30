@@ -9,8 +9,7 @@ export default {
   name: 'TodoFooter',
   methods: {
     clearTodo() {
-      console.log('[TodoFooter]', 'clearTodo')
-      this.$emit('clearTodo')
+      this.$store.commit('clearTodoItem')
     },
   },
 }

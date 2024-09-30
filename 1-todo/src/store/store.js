@@ -26,5 +26,10 @@ export const store = new Vuex.Store({
       localStorage.removeItem(payload.todo)
       state.todos.splice(payload.idx, 1) // Array.from(event.target.closest('li').parentNode.children ).indexOf(event.target.closest('li'))
     },
+    clearTodoItem(state) {
+      console.log(['store'], 'clearTodoItem()', state)
+      localStorage.clear()
+      state.todos = []
+    },
   },
 })

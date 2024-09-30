@@ -2,8 +2,8 @@
   <div id="app">
     <TodoHeader></TodoHeader>
     <TodoInput></TodoInput>
-    <TodoList v-bind:todos="todos"></TodoList>
-    <TodoFooter v-on:clearTodo="clearTodoItem"></TodoFooter>
+    <TodoList></TodoList>
+    <TodoFooter></TodoFooter>
   </div>
 </template>
 
@@ -20,17 +20,6 @@ export default {
     TodoInput,
     TodoList,
     TodoFooter,
-  },
-  data() {
-    return {
-      todos: [],
-    }
-  },
-  methods: {
-    clearTodoItem() {
-      localStorage.clear()
-      this.todos = []
-    },
   },
 }
 </script>
