@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <TodoHeader></TodoHeader>
-    <TodoInput></TodoInput>
+    <TodoInput v-on:addTodo="addTodoItem"></TodoInput>
     <TodoList v-bind:todos="todos"></TodoList>
     <TodoFooter></TodoFooter>
   </div>
@@ -30,6 +30,13 @@ export default {
     this.todos = Array.from({ length: localStorage.length }, (_, i) =>
       localStorage.key(i)
     )
+  },
+  methods: {
+    addTodoItem: function (newTodo) {
+      console.log('[root]', 'addTodoItem()', newTodo)
+      localStorage.setItem(newTodo, newTodo)
+      this.todos.push(newTodo)
+    },
   },
 }
 </script>
