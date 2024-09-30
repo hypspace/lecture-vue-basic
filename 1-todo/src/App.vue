@@ -16,33 +16,33 @@ import TodoList from './components/TodoList.vue'
 export default {
   name: 'App',
   components: {
-    TodoHeader: TodoHeader,
-    TodoInput: TodoInput,
-    TodoList: TodoList,
-    TodoFooter: TodoFooter,
+    TodoHeader,
+    TodoInput,
+    TodoList,
+    TodoFooter,
   },
-  data: function () {
+  data() {
     return {
       todos: [],
     }
   },
-  created: function () {
+  created() {
     this.todos = Array.from({ length: localStorage.length }, (_, i) =>
       localStorage.key(i)
     )
   },
   methods: {
-    addTodoItem: function (newTodo) {
+    addTodoItem(newTodo) {
       console.log('[root]', 'addTodoItem()', newTodo)
       localStorage.setItem(newTodo, newTodo)
       this.todos.push(newTodo)
     },
-    deleteTodoItem: function (todo, idx) {
+    deleteTodoItem(todo, idx) {
       console.log('[root]', 'deleteTodoItem()', todo, idx)
       localStorage.removeItem(todo)
       this.todos.splice(idx, 1) // Array.from(event.target.closest('li').parentNode.children ).indexOf(event.target.closest('li'))
     },
-    clearTodoItem: function () {
+    clearTodoItem() {
       console.log('[root]', 'clearTodoItem()')
       localStorage.clear()
       this.todos = []

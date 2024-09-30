@@ -13,18 +13,18 @@
 <script>
 export default {
   name: 'TodoInput',
-  data: function () {
+  data() {
     return {
       newTodo: '',
     }
   },
   methods: {
-    addTodo: function () {
+    addTodo() {
       console.log('[TodoInput]', 'addTodo()', this.newTodo)
       this.$emit('addTodo', this.newTodo)
       this.clearInput()
     },
-    clearInput: function () {
+    clearInput() {
       this.newTodo = ''
     },
   },

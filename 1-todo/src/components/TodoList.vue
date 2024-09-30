@@ -12,7 +12,7 @@ export default {
   name: 'TodoList',
   props: ['todos'],
   methods: {
-    deleteTodo: function (todo, idx) {
+    deleteTodo(todo, idx) {
       console.log('[TodoList]', 'deleteTodo()', todo, idx)
       this.$emit('deleteTodo', todo, idx)
     },
