@@ -1,10 +1,10 @@
 <template>
-  <ul>
+  <TransitionGroup name="list" tag="ul">
     <li v-for="(todo, idx) in todos" v-bind:key="idx">
       {{ todo }}
       <button v-on:click="deleteTodo(todo, idx)">X</button>
     </li>
-  </ul>
+  </TransitionGroup>
 </template>
 
 <script>
@@ -29,5 +29,14 @@ li {
   display: flex;
   justify-content: space-between;
   padding: 5px 0;
+}
+.list-enter-active,
+.list-leave-active {
+  transition: all 0.5s ease;
+}
+.list-enter,
+.list-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
 }
 </style>
