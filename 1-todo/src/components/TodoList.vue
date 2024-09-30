@@ -1,6 +1,6 @@
 <template>
   <TransitionGroup name="list" tag="ul">
-    <li v-for="(todo, idx) in todos" v-bind:key="idx">
+    <li v-for="(todo, idx) in this.$store.state.todos" v-bind:key="idx">
       {{ todo }}
       <button v-on:click="deleteTodo(todo, idx)">X</button>
     </li>
@@ -10,11 +10,9 @@
 <script>
 export default {
   name: 'TodoList',
-  props: ['todos'],
   methods: {
     deleteTodo(todo, idx) {
-      console.log('[TodoList]', 'deleteTodo()', todo, idx)
-      this.$emit('deleteTodo', todo, idx)
+      this.$store.commit('deleteTodoItem', { todo, idx })
     },
   },
 }
