@@ -13,8 +13,7 @@ export default {
   props: ['todos'],
   methods: {
     deleteTodo(todo, idx) {
-      console.log('[TodoList]', 'deleteTodo()', todo, idx)
-      this.$emit('deleteTodo', todo, idx)
+      this.$store.commit('deleteTodoItem', { todo, idx })
     },
   },
 }
