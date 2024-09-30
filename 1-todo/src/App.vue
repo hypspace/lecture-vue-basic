@@ -2,7 +2,7 @@
   <div id="app">
     <TodoHeader></TodoHeader>
     <TodoInput v-on:addTodo="addTodoItem"></TodoInput>
-    <TodoList v-bind:todos="todos"></TodoList>
+    <TodoList v-bind:todos="todos" v-on:deleteTodo="deleteTodoItem"></TodoList>
     <TodoFooter></TodoFooter>
   </div>
 </template>
@@ -36,6 +36,11 @@ export default {
       console.log('[root]', 'addTodoItem()', newTodo)
       localStorage.setItem(newTodo, newTodo)
       this.todos.push(newTodo)
+    },
+    deleteTodoItem: function (todo, idx) {
+      console.log('[root]', 'deleteTodoItem()', todo, idx)
+      localStorage.removeItem(todo)
+      this.todos.splice(idx, 1) // Array.from(event.target.closest('li').parentNode.children ).indexOf(event.target.closest('li'))
     },
   },
 }

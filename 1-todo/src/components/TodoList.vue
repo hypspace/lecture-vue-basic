@@ -2,7 +2,7 @@
   <ul>
     <li v-for="(todo, idx) in todos" v-bind:key="idx">
       {{ todo }}
-      <button v-on:click="handleDelete(todo, idx)">X</button>
+      <button v-on:click="deleteTodo(todo, idx)">X</button>
     </li>
   </ul>
 </template>
@@ -12,11 +12,10 @@ export default {
   name: 'TodoList',
   props: ['todos'],
   methods: {
-    // handleDelete: function (todo, idx) {
-    // console.log('[TodoList]', 'handleDelete()', todo, idx)
-    // localStorage.removeItem(todo)
-    // this.todos.splice(idx, 1) // Array.from(event.target.closest('li').parentNode.children ).indexOf(event.target.closest('li'))
-    // },
+    deleteTodo: function (todo, idx) {
+      console.log('[TodoList]', 'deleteTodo()', todo, idx)
+      this.$emit('deleteTodo', todo, idx)
+    },
   },
 }
 </script>
