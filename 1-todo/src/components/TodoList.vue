@@ -1,6 +1,6 @@
 <template>
   <TransitionGroup name="list" tag="ul">
-    <li v-for="(todo, idx) in this.$store.state.todos" v-bind:key="idx">
+    <li v-for="(todo, idx) in this.getTodos" v-bind:key="idx">
       {{ todo }}
       <button v-on:click="deleteTodo(todo, idx)">X</button>
     </li>
@@ -8,12 +8,17 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   name: 'TodoList',
   methods: {
     deleteTodo(todo, idx) {
       this.$store.commit('deleteTodoItem', { todo, idx })
     },
+  },
+  computed: {
+    ...mapGetters(['getTodos']),
   },
 }
 </script>
