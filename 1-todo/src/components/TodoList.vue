@@ -2,20 +2,20 @@
   <TransitionGroup name="list" tag="ul">
     <li v-for="(todo, idx) in this.getTodos" v-bind:key="idx">
       {{ todo }}
-      <button v-on:click="deleteTodo(todo, idx)">X</button>
+      <button v-on:click="deleteTodo({ todo, idx })">X</button>
     </li>
   </TransitionGroup>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapMutations } from 'vuex'
 
 export default {
   name: 'TodoList',
   methods: {
-    deleteTodo(todo, idx) {
-      this.$store.commit('deleteTodoItem', { todo, idx })
-    },
+    ...mapMutations({
+      deleteTodo: 'deleteTodoItem',
+    }),
   },
   computed: {
     ...mapGetters(['getTodos']),
