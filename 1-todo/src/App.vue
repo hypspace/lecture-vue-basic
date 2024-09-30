@@ -2,7 +2,7 @@
   <div id="app">
     <TodoHeader></TodoHeader>
     <TodoInput></TodoInput>
-    <TodoList></TodoList>
+    <TodoList v-bind:todos="todos"></TodoList>
     <TodoFooter></TodoFooter>
   </div>
 </template>
@@ -20,6 +20,16 @@ export default {
     TodoInput: TodoInput,
     TodoList: TodoList,
     TodoFooter: TodoFooter,
+  },
+  data: function () {
+    return {
+      todos: [],
+    }
+  },
+  created: function () {
+    this.todos = Array.from({ length: localStorage.length }, (_, i) =>
+      localStorage.key(i)
+    )
   },
 }
 </script>
