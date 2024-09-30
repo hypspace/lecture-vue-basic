@@ -1,6 +1,7 @@
 <template>
   <ul>
-    <li>
+    <li v-for="(todo, idx) in todos" v-bind:key="idx">
+      {{ todo }}
       <button>X</button>
     </li>
   </ul>
@@ -9,6 +10,16 @@
 <script>
 export default {
   name: 'TodoList',
+  data: function () {
+    return {
+      todos: [],
+    }
+  },
+  created: function () {
+    this.todos = Array.from({ length: localStorage.length }, (_, i) =>
+      localStorage.key(i)
+    )
+  },
 }
 </script>
 
